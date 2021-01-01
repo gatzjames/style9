@@ -82,11 +82,10 @@ type PseudoClasses = (
   | ':disabled'
 );
 
+type AtRules = `@media${string}` | `@supports${string}`;
+
 type Style = StyleProperties & {
-  // Mixed keys not possible in TypeScript
-  // https://github.com/microsoft/TypeScript/issues/17867
-  // [key: string]: Style;
-  [key in PseudoClasses | PseudoElements]?: Style;
+  [key in PseudoClasses | PseudoElements | AtRules]?: Style
 };
 
 export default Style;
